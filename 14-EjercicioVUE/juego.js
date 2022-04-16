@@ -5,12 +5,10 @@ const juego = new Vue({
         personas: [],
         resultado: [],
         orden: [],
-        verificar: function(array1,array2){
-            return array1.toString() === array2.toString();
-        },
+        mensaje: '',
         estado: 'Empieza',
         deshabilitado: [false,false,false,false,false,false,false,false,false,false],
-        mensaje: '',
+        verificar: function(array1,array2) { return array1.toString() === array2.toString(); },
         audio: new Audio('audio.mp3'),
         fin: false,
     },
@@ -54,5 +52,4 @@ const juego = new Vue({
             }
         }
     }
-
 });

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Propiedades Computadas</title>
+</head>
+<body>
+    <div id="app">
+        <input type="range" v-model="tiempo"> {{ tiempo }}
+        <br>
+        <input type="text" v-model="busqueda" placeholder="Buscar tarea">
+        <hr>
+        <p v-for="(valor, propiedad) in usuario">{{ valor }} : {{ propiedad }}</p>
+        <hr>
+        <li v-for="tarea in filtroTareas">{{ tarea.nombre }} - {{ tarea.tiempo }}</li>
+    </div>
+
+    <script src="../vue.js"></script>
+    <script src="computadas.js"></script>
+</body>
+</html>

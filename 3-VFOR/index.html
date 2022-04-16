@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VFOR</title>
+</head>
+<body>
+    <div id="app">
+        <p v-for="(valor, propiedad) in usuario">{{ valor }} : {{ propiedad }}</p>
+        <hr>
+        <li v-for="(tarea, index) in tareas">
+            {{ tarea.nombre }} - {{ index }}
+        </li>
+    </div>
+
+    <script src="../vue.js"></script>
+    <script src="tareas.js"></script>
+</body>
+</html>

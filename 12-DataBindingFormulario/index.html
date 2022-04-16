@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            align-items: center;
+            display: flex;
+            background-color: #333333;
+            color: white;
+            font-family: sans-serif;            
+            height: 100%;
+            justify-content: center;
+        }
+
+        .cont{
+            border: .3px #FCFCFC solid;
+            border-radius: .7em;
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        form{
+            min-width: 300px;
+            max-width: 800px;
+            align-items: left;
+            text-align: center;
+        }
+
+        form > *{
+            display: flex;
+            width: 100%;
+        }
+
+        input[type="radio"]{
+            display: inline;
+        }
+
+        textarea{
+            min-width: 300px;
+            max-width: 800px;
+        }
+        
+        input[type="text"], textarea {
+            background-color: #FCFCFC;
+            border-radius: .4em;
+            color: BLACK;
+            font-family: helvetica;
+            padding: 3px;
+        }
+
+        label, div, input[type="submit"]{
+            padding: .3em;
+        }
+
+        input[type="submit"]{
+            background-color: #333333;
+            border: .3px #FCFCFC solid;
+            border-radius: 7em;
+            color: #FCFCFC;
+        }
+
+        input[type="submit"]:hover{
+            background-color: #FCFCFC;
+            border:#FCFCFC;
+            color: #444444;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:active{
+            background-color: #444444;
+            border: #444444;
+            color: #FCFCFC;
+        }
+
+        .invalido {
+            border: 1px solid red;
+        }
+
+    </style>
+    <title>Data Binding Formulario</title>
+</head>
+<body>
+    <div id="app" class="cont">
+        <form>
+            <h4>Formulario</h4>
+            <label for="nombre">Nombre</label>
+            <input type="text" required id="nombre" v-model="form.nombre" :class="{ invalido: !form.nombre }">
+            <label for="apellidos">Apellidos</label>
+            <input type="text" required id="apellidos" v-model="form.apellido" :class="{ invalido: !form.apellido }">
+
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" required v-model="form.mensaje" :class="{ invalido: !form.mensaje }"></textarea>
+            <br>
+            <label for="">Hora de contacto</label>
+            <span>Mañanas</span><input type="radio" value="mañanas" v-model="contacto">
+            <span>Tardes</span><input type="radio" value="tardes" v-model="contacto">
+            <span>Noches</span><input type="radio" value="noches" v-model="contacto">
+
+            <label for="productos"></label>
+            <select id="productos" v-model="form.productos">
+                <option value="producto1">Producto 1</option>
+                <option value="producto2">Producto 2</option>
+                <option value="producto3">Producto 3</option>
+            </select>
+
+            <label for=""></label>
+            <span>Acepto los Términos y Condiciones de VUE</span>
+            <input id="acepta" type="checkbox" v-model="form.acepta">
+            <input type="submit" value="Enviar" v-if="form.acepta">
+        </form>
+    </div>
+    <script src="../vue.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        .contenedor{
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            padding: 1em;
+        }
+
+        .user-info{
+            border: 2px solid;
+            border-radius: 2em;
+            margin-top: 5px;
+            padding: 2rem;
+            text-align: center;
+            width: max-content;
+        }
+
+        .logged-in{
+            background-color: seagreen;
+        }
+
+        .logged-out{
+            background-color: firebrick;
+        }
+
+        .modo-claro{
+            background-color: #FDFDFD;
+            color: #000000;
+        }
+
+        .modo-claro.user-info{
+            border: #000000;
+        }
+
+        .modo-oscuro{
+            background-color: #444444;
+            color: #FDFDFD;
+        }
+
+        .modo-oscuro.user-info{
+            border: #FDFDFD;
+        }
+    </style>
+
+    <title>Data Binding - Clases y Estilos</title>
+</head>
+<body>
+    <main id="app">
+        <div class="contenedor" :class="estiloModo">
+            <span>Log-in/out</span>
+            <input type="checkbox" v-model="logged">
+
+            <article class="user-info" :class="estiloLogear">
+                {{ mensaje }}
+            </article>
+            <br>
+            <!-- <pre> {{ $data }} </pre> -->
+            <span>Modo Oscuro</span>
+            <input type="checkbox" v-model="mode">
+        </div>
+    </main>
+    
+
+    <script src="../vue.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

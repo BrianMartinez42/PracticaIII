@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atributos Dinamicos</title>
+</head>
+<body>
+    <div>
+        <div id="bear">
+            <input v-model="ancho" type="range">Ancho Oso
+            <br>
+            <input v-model="alto" type="range">Alto Oso
+            <br>
+            <img v-bind:src="urlOsosCompleta" alt="">
+        </div>
+    </div>
+
+    <script src="../vue.js"></script>
+    <script src="dinamicos.js"></script>
+</body>
+</html>

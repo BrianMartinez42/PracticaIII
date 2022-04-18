@@ -7,9 +7,10 @@ const juego = new Vue({
         orden: [],
         mensaje: '',
         estado: 'Empieza',
-        deshabilitado: [false,false,false,false,false,false,false,false,false,false],
+        deshabilitado: [,true,true,true,true,true,true,true,true,true,true],
         verificar: function(array1,array2) { return array1.toString() === array2.toString(); },
         audio: new Audio('audio.mp3'),
+        intentos: 3,
         fin: false,
     },
 
@@ -23,18 +24,34 @@ const juego = new Vue({
         pasar(nombre,id){
             //Pasar cada nombre al nuevo array y deshabilitar el botón correspondiente
             if (this.resultado.length<10) {
-                // console.log(nombre);
                 this.resultado.push(nombre);
-                this.deshabilitado[id]=true;
+                this.deshabilitado[id]=false;
             } 
         },
+        nuevoIntento(){
+            //Devuelvo los valores originales a las variables
+            this.resultado = [];
+            this.intentos = this.intentos-1;
+            this.mensaje = '';
+            this.estado = 'Empieza';
+            this.fin = false;
+            for (let i = 0; i < 11; i++) {
+                this.deshabilitado[i] = true;
+            }
+        },
+        reiniciar(){
+            window.location.reload();
+        }
     },
 
     watch:{
         resultado(nuevo, antiguo){
             // Si el rango del array resultado es menor a 10, que me muestre el mensaje de continuar
-            if(nuevo.length < 10){
+            if((nuevo.length > 0) && (nuevo.length <= 9)){
                 this.estado = "Continua";
+                return false;
+            }else if(nuevo.length == 0){
+                this.estado = "Empieza";
                 return false;
             }
             this.estado = "Terminaste";
@@ -47,9 +64,13 @@ const juego = new Vue({
             if(t && this.verificar(this.resultado, this.orden)){
                 this.mensaje = 'Está ordenado. ÉXITO';
                 this.audio.play();
-            }else{
-                this.mensaje = 'No está ordenado. :C';
+            }else if(t && !this.verificar(this.resultado, this.orden)){
+                this.mensaje = 'No está ordenado. Vuelve a intentarlo.';
             }
-        }
+            else{
+                this.mensaje = '';
+            }
+        },
+
     }
 });

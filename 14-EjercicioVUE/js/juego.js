@@ -9,8 +9,10 @@ const juego = new Vue({
         estado: 'Empieza',
         deshabilitado: [,true,true,true,true,true,true,true,true,true,true],
         verificar: function(array1,array2) { return array1.toString() === array2.toString(); },
-        audio: new Audio('audio.mp3'),
-        intentos: 3,
+        gana: new Audio('audios/gana.mp3'),
+        intenta: new Audio('audios/intento.mp3'),
+        pierde: new Audio('audios/pierde.mp3'),
+        intentos: 2,
         fin: false,
     },
 
@@ -35,6 +37,7 @@ const juego = new Vue({
             this.mensaje = '';
             this.estado = 'Empieza';
             this.fin = false;
+            this.intenta.play();
             for (let i = 0; i < 11; i++) {
                 this.deshabilitado[i] = true;
             }
@@ -63,7 +66,7 @@ const juego = new Vue({
             //Si fin es TRUE, comparar los arrays y mostrar el mensaje correspondiente
             if(t && this.verificar(this.resultado, this.orden)){
                 this.mensaje = 'Está ordenado. ÉXITO';
-                this.audio.play();
+                this.gana.play();
             }else if(t && !this.verificar(this.resultado, this.orden)){
                 this.mensaje = 'No está ordenado. Vuelve a intentarlo.';
             }
@@ -71,6 +74,12 @@ const juego = new Vue({
                 this.mensaje = '';
             }
         },
+        mensaje(a,d){
+            if((a==='No está ordenado. Vuelve a intentarlo.') && (this.intentos === 0)){
+                alert('Te has quedado sin intentos!');
+                this.pierde.play();
+            }
+        }
 
     }
 });

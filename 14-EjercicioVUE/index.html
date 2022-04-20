@@ -17,8 +17,8 @@
           <div class="caja">
               <h4>NOMBRES</h4>
             <ul>
-                <li v-for="persona in personas">
-                    {{ persona.username }} <button class="pasar" v-if="deshabilitado[persona.id]" v-on:click="pasar(persona.username,persona.id)"> → </button>
+                <li v-for="(persona, index) in personas">
+                  {{ persona }}  <button class="pasar" v-if="deshabilitado[index]" v-on:click="pasar(persona)"> → </button>
                 </li>
             </ul>
           </div>

@@ -64,12 +64,18 @@ header{
 }
 
 .caja{
-    align-items: center;
-    width: 18em;
+    width: 15em;
+}
+
+h4{
+    margin-left: 25px;
 }
 
 li{
+    align-items: left;
+    display: flex;
     height: 2em;
+    justify-content: space-between;
 }
 
 .pasar{

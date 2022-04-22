@@ -9,11 +9,12 @@ const juego = new Vue({
         mensaje: '',
         desordenado: 'No está ordenado. Vuelve a intentarlo.',
         ordenado: 'Está ordenado. ÉXITO',
-        estado: 'Empieza',
+        estado: 'Comienza!',
         gana: new Audio('audios/gana.mp3'),
         intenta: new Audio('audios/intento.mp3'),
         pierde: new Audio('audios/pierde.mp3'),
         intentos: 2,
+        showModal: true,
         fin: false,
     },
 
@@ -32,8 +33,6 @@ const juego = new Vue({
                 this.personas.sort(function() { return Math.random() - 0.5 });
             })
             .catch(error => console.log(error));
-            // CREAR UN MODAL PARA COMENZAR A JUGAR
-            alert('Bienvenido');
     },
 
     methods:{
@@ -54,7 +53,7 @@ const juego = new Vue({
             this.resultado = [];
             this.intentos = this.intentos-1;
             this.mensaje = '';
-            this.estado = 'Empieza';
+            this.estado = 'Comienza!';
             this.fin = false;
             this.intenta.play();
             for (let i = 0; i < this.habilitado.length; i++) {
@@ -75,19 +74,20 @@ const juego = new Vue({
         resultado(nuevo, antiguo){
             // Si el rango del array resultado es menor a 10, que me muestre el mensaje de continuar
             if((nuevo.length > 0) && (nuevo.length < this.personas.length)){
-                this.estado = "Continua";
+                this.estado = "Continua...";
                 return false;
             }else if(nuevo.length == 0){
-                this.estado = "Empieza";
+                this.estado = "Comienza!";
                 return false;
             }else{
-                this.estado = "Terminaste";
+                this.estado = "Lista llena.";
                 this.fin = true;
             }
 
             //Si fin es TRUE, comparar los arrays y mostrar el mensaje correspondiente
             if(this.fin && this.verificar(nuevo, this.orden)){
                 this.mensaje = this.ordenado;
+                alert('¡Excelente, la lista está ordenada!');
                 this.gana.play();
             }else if(this.fin && !this.verificar(nuevo, this.orden)){
                 this.mensaje = this.desordenado;
@@ -98,7 +98,7 @@ const juego = new Vue({
 
             if((this.mensaje===this.desordenado) && (this.intentos === 0)){
                 this.pierde.play();
-                alert('Te has quedado sin intentos!');
+                alert('¡La lista no está ordenada y te has quedado sin intentos!');
             }
         }
 

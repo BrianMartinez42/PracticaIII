@@ -143,3 +143,47 @@ li{
     color: white;
     transition-delay: 0s;
 }
+
+.modal{
+    position: fixed;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: table;
+    transition: opacity 0.3s ease;
+}
+
+.modal-container {
+    width: 700px;
+    margin: auto;
+    margin-top: 7em;
+    padding: 20px 30px;
+    background-color: #444444;
+    border-radius: 2em;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+    transition: all 0.3s ease;
+  }
+
+  .modal-button{
+    border: 0;
+    background: none;
+    border: 2px solid #DDDDDD;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+    transition: 0.25s;
+    outline: none;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .modal-button:hover{
+    background-color: #FFFFFF;
+    color: #444444;
+    transition-delay: 0s;
+}

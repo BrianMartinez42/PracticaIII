@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        html{
+            height: 100%;
+        }
+
+        body{
+            /* height: 100%;
+            margin: 0;
+            background-repeat: no-repeat;
+            background-attachment: fixed; */
+            background-color: gray;
+            font-family: sans-serif;
+            text-align: center;
+            align-items: center;
+            align-content: center;
+        }
+
+        header{
+            background-color: #222222;
+            border: 1px black solid;
+            color: aliceblue;
+            margin: -8px;
+            margin-bottom: .5em;
+            padding: .1px;
+            text-align: center;
+        }
+
+        .boton{
+            border-radius: 2em;
+            border: 2px black solid;
+            color: aliceblue;
+            display: block;
+            margin: 5px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 1em;
+            text-align: center;
+            text-decoration: none;
+            width: 80%;
+            transition: all 1s;
+            transition-delay: 1ms;
+        }
+        .boton:hover{
+            width: 50%;
+        }
+    </style>
+    <title>Propiedades Dinamicas</title>
+</head>
+<body>
+    <header><h4>Enlaces</h4></header>
+    <div id="app">
+        <boton v-for="boton in botones" :color="boton.color" :enlace="boton.enlace" :anchor-text="boton.anchorText" />
+    </div>
+    
+
+    <script src="../vue.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

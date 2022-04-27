@@ -7,19 +7,19 @@ const juego = new Vue({
         orden: [],
         habilitado: [],
         mensaje: '',
-        desordenado: 'No está ordenado. Vuelve a intentarlo.',
-        ordenado: 'Está ordenado. ÉXITO',
+        mensaje_ordenado: 'Está ordenado. ÉXITO',
         estado: 'Comienza!',
         gana: new Audio('audios/gana.mp3'),
-        intenta: new Audio('audios/intento.mp3'),
+        sonido_error: new Audio('audios/intento.mp3'),
         pierde: new Audio('audios/pierde.mp3'),
-        intentos: 2,
-        showModal: true,
+        showModal: false,
         fin: false,
+        mensaje_error: '',
+        errores: 0,
     },
 
     mounted(){
-        persona=[];
+        persona = [];
         axios.get(this.url)
             .then(respuesta => {
                 res = respuesta.data;
@@ -30,7 +30,10 @@ const juego = new Vue({
 
                 this.orden = this.personas.slice();
                 this.orden.sort();
-                this.personas.sort(function() { return Math.random() - 0.5 });
+
+                this.personas.sort(function() { 
+                    return Math.random() - 0.1 
+                });
             })
             .catch(error => console.log(error));
     },
@@ -38,31 +41,42 @@ const juego = new Vue({
     methods:{
         pasar(nombre){
             //Pasar cada nombre al nuevo array y deshabilitar el botón correspondiente
-            if (this.resultado.length<10) {
+            indice = this.resultado.length;
+            persona = this.orden[indice];
+            if (nombre === persona) {
                 this.resultado.push(nombre);
+                this.mensaje_error = '';
                 for (let i = 0; i < this.personas.length; i++) {
-                    if (this.personas[i]===nombre) {
+                    if (this.personas[i] === nombre) {
                         this.habilitado[i] = false;
                     }
                 }
-            } 
-        },
-
-        nuevoIntento(){
-            //Devuelvo los valores originales a las variables
-            this.resultado = [];
-            this.intentos = this.intentos-1;
-            this.mensaje = '';
-            this.estado = 'Comienza!';
-            this.fin = false;
-            this.intenta.play();
-            for (let i = 0; i < this.habilitado.length; i++) {
-                this.habilitado[i] = true;
+            }else{
+                this.mensaje_error = 'El nombre seleccionado no va en esa posición';
+                this.error = this.errores + 1;
+                this.sonido_error.play();
             }
         },
 
-        reiniciar(){
-            window.location.reload();
+        rejugar(){
+            //Devuelvo los valores originales a las variables
+            this.resultado = [];
+            this.errores = 0;
+            this.mensaje = '';
+            this.estado = 'Comienza!';
+            this.fin = false;
+
+            for (let i = 0; i < this.habilitado.length; i++) {
+                this.habilitado[i] = true;
+            }
+
+            this.personas.sort(function() { 
+                return Math.random() - 0.1
+            });
+        },
+
+        mostrarReglas(){
+            this.showModal = true;
         },
 
         verificar(array1,array2) {
@@ -76,30 +90,23 @@ const juego = new Vue({
             if((nuevo.length > 0) && (nuevo.length < this.personas.length)){
                 this.estado = "Continua...";
                 return false;
-            }else if(nuevo.length == 0){
+            } else if (nuevo.length == 0){
                 this.estado = "Comienza!";
                 return false;
-            }else{
+            } else {
                 this.estado = "Lista llena.";
                 this.fin = true;
             }
 
             //Si fin es TRUE, comparar los arrays y mostrar el mensaje correspondiente
-            if(this.fin && this.verificar(nuevo, this.orden)){
-                this.mensaje = this.ordenado;
+            if (this.fin && this.verificar(nuevo, this.orden)) {
+                this.mensaje = this.mensaje_ordenado;
                 alert('¡Excelente, la lista está ordenada!');
                 this.gana.play();
-            }else if(this.fin && !this.verificar(nuevo, this.orden)){
-                this.mensaje = this.desordenado;
-            }
-            else{
+            } else {
                 this.mensaje = '';
             }
 
-            if((this.mensaje===this.desordenado) && (this.intentos === 0)){
-                this.pierde.play();
-                alert('¡La lista no está ordenada y te has quedado sin intentos!');
-            }
         }
 
     }

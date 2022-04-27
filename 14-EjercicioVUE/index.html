@@ -21,16 +21,16 @@
             <p> El objetivo del juego es crear un lista de nombres en orden alfabético.  </p>
             <h5>Reglas de juego:</h5>
             <ul>
-              <li>Tiene 3 intentos (contando el de inicio).</li>
-              <li>Al dar click en "Volver a intentar", se borrará la lista y se le quitará un intento.</li>
-              <li>Se verificará el orden una vez habiendo pasado todos los nombres a la lista.</li>
+              <li>Se verificará el orden una vez se hayan pasado todos los nombres a la lista.</li>
               <li>Se mostrarán mensajes correspondientes al orden en la sección "ESTADO".</li>
-            </ul>
+              <li>Se guardará su récord una vez se haya terminado de ordenar, el mismo podrá superarse volviendo a jugando.</li>
+            </ul><br>
             <button class="modal-button" v-on:click="showModal = false"> Entendido </button>
           </div>
         </div>
           <div class="caja">
               <h4>NOMBRES</h4>
+              <hr>
             <ul>
                 <li v-for="(persona, index) in personas">
                   <p>{{ persona }}</p>  <button class="pasar" v-if="habilitado[index]" v-on:click="pasar(persona)"> → </button>
@@ -40,6 +40,7 @@
 
           <div class="caja">
             <h4>TU ORDEN</h4>
+            <hr>
             <ul>
                 <li v-for="result in resultado">
                     {{ result }}
@@ -49,11 +50,13 @@
 
           <div class="caja">
             <h4>ESTADO</h4>
-              <p>{{ estado }}</p>
-              <p>{{ mensaje }}</p>
-              <p> Intentos Restantes: {{ intentos }}</p>
-              <button class="reintentar" v-on:click="nuevoIntento" v-if="(mensaje != ordenado) && (intentos != 0)">Volver a Intentar ⥀</button>
-              <button class="reiniciar" v-on:click="reiniciar" v-if="(mensaje === ordenado) || ((mensaje === desordenado)&&(intentos === 0))">Reiniciar ⟳</button>
+            <hr>
+              <p> {{ estado }} </p>
+              <p> {{ mensaje }} </p>
+              <p> Errores: {{ errores }} </p>
+              <p> {{ mensaje_error }} </p>
+              <button class="reintentar" v-on:click="mostrarReglas">Reglas de Juego</button> <br><br>
+              <button class="reiniciar" v-on:click="rejugar" v-if="(mensaje === mensaje_ordenado)">Rejugar ⟳</button>
           </div>
       </div>
 

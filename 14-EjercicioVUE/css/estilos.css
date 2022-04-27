@@ -1,6 +1,7 @@
 body{
     color: #FFFFFF;
-    background-color: #444444;
+    background-image: url(../img/background.jpg);
+    background-size: cover;
     font-family: sans-serif;
 }
 
@@ -19,7 +20,7 @@ header{
 }
 
 #juego{
-    background-color: #444444;
+    background-color: #333333;
     border-radius: 1.5em;
     display: flex;
     flex-wrap: wrap;
@@ -161,7 +162,7 @@ li{
     margin: auto;
     margin-top: 7em;
     padding: 20px 30px;
-    background-color: #444444;
+    background-color: #333333;
     border-radius: 2em;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
     transition: all 0.3s ease;

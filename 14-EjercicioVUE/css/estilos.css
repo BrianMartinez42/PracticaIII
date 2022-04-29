@@ -2,7 +2,7 @@ body{
     color: #FFFFFF;
     background-image: url(../img/background.jpg);
     background-size: cover;
-    font-family: sans-serif;
+    font-family: 'Press Start 2P';
 }
 
 header{
@@ -12,8 +12,12 @@ header{
     color: #FFFFFF;
     text-align: center;
     width: 100%;
-  }
-  
+}
+
+h4{
+    font-size: 20px;
+}
+
 .titulo{
     font-size: 30px;
     color: #FFFFFF;
@@ -65,7 +69,7 @@ header{
 }
 
 .caja{
-    width: 15em;
+    width: 20em;
 }
 
 h4{
@@ -75,6 +79,7 @@ h4{
 li{
     align-items: left;
     display: flex;
+    font-size: 14px;
     height: 2em;
     justify-content: space-between;
 }
@@ -187,4 +192,8 @@ li{
     background-color: #FFFFFF;
     color: #444444;
     transition-delay: 0s;
+}
+
+.modal > li{
+    font-size: 10px;
 }

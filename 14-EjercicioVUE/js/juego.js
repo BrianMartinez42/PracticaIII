@@ -53,7 +53,7 @@ const juego = new Vue({
                 }
             }else{
                 this.mensaje_error = 'El nombre seleccionado no va en esa posición';
-                this.error = this.errores + 1;
+                this.errores = this.errores + 1;
                 this.sonido_error.play();
             }
         },

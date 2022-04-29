@@ -7,12 +7,11 @@ const juego = new Vue({
         orden: [],
         habilitado: [],
         mensaje: '',
-        mensaje_ordenado: 'Está ordenado. ÉXITO',
         estado: 'Comienza!',
-        gana: new Audio('audios/gana.mp3'),
-        sonido_error: new Audio('audios/intento.mp3'),
-        pierde: new Audio('audios/pierde.mp3'),
-        showModal: false,
+        sonido_exito: new Audio('audios/exito.mp3'),
+        sonido_error: new Audio('audios/error.mp3'),
+        mostrar_reglas: false,
+        mostrar_exito: false,
         fin: false,
         mensaje_error: '',
         errores: 0,
@@ -52,6 +51,7 @@ const juego = new Vue({
                     }
                 }
             }else{
+                this.estado = 'Continua...';
                 this.mensaje_error = 'El nombre seleccionado no va en esa posición';
                 this.errores = this.errores + 1;
                 this.sonido_error.play();
@@ -91,18 +91,17 @@ const juego = new Vue({
                 this.estado = "Continua...";
                 return false;
             } else if (nuevo.length == 0){
-                this.estado = "Comienza!";
+                this.estado = "¡Comienza!";
                 return false;
             } else {
-                this.estado = "Lista llena.";
+                this.estado = "¡Terminaste!";
                 this.fin = true;
             }
 
             //Si fin es TRUE, comparar los arrays y mostrar el mensaje correspondiente
             if (this.fin && this.verificar(nuevo, this.orden)) {
-                this.mensaje = this.mensaje_ordenado;
-                alert('¡Excelente, la lista está ordenada!');
-                this.gana.play();
+                this.mostrar_exito = true,
+                this.sonido_exito.play();
             } else {
                 this.mensaje = '';
             }

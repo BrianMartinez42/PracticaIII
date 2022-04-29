@@ -10,12 +10,13 @@
     <title>ORDE-NAME</title>
 </head>
 <body>
-    <header>
+  <header>
         <h1 class="titulo">ORDE-NAME</h1>
-      </header>
+  </header>
 
-      <div id="juego" class="neon">
-        <div v-if="showModal" class="modal">
+    <div id="juego" class="neon">
+
+        <div v-if="mostrar_reglas" class="modal">
           <div class="modal-container">
             <h4>Bienvenido a ORDE-NAME</h4>
             <hr>
@@ -26,9 +27,20 @@
               <li>Se mostrarán mensajes correspondientes al orden en la sección "ESTADO".</li><br>
               <li>Se guardará su récord una vez se haya terminado de ordenar, el mismo podrá superarse volviendo a jugando.</li><br>
             </ul><br>
-            <button class="modal-button" v-on:click="showModal = false"> Entendido </button>
+            <button class="modal-button" v-on:click="mostrar_reglas = false"> Entendido </button>
           </div>
         </div>
+
+        <div v-if="mostrar_exito" class="modal">
+          <div class="modal-container">
+            <h4>¡Felicidades!</h4>
+            <hr>
+            <p> Has ordenado la lista.  </p>
+            <p> Errores: {{ errores }} </p>
+            <button class="modal-button" v-on:click="mostrar_exito = false"> Continuar </button>
+          </div>
+        </div>
+        
           <div class="caja">
               <h4>NOMBRES</h4>
               <hr>
@@ -54,10 +66,9 @@
             <hr>
               <p> {{ estado }} </p>
               <p> {{ mensaje }} </p>
-              <p> Errores: {{ errores }} </p>
-              <p> {{ mensaje_error }} </p>
+              <p class="mensaje-error"> {{ mensaje_error }} </p>
               <button class="reintentar" v-on:click="mostrarReglas">Reglas de Juego</button> <br><br>
-              <button class="reiniciar" v-on:click="rejugar" v-if="(mensaje === mensaje_ordenado)">Rejugar ⟳</button>
+              <button class="reiniciar" v-on:click="rejugar" v-if="fin">Rejugar ⟳</button>
           </div>
       </div>
 

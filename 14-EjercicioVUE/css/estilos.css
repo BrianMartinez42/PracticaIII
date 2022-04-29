@@ -197,3 +197,7 @@ li{
 .modal > li{
     font-size: 10px;
 }
+
+.mensaje-error{
+    color: #ff4444;
+}

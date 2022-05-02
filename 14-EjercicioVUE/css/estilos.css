@@ -32,7 +32,7 @@ h4{
     margin-left: 5em;
     margin-right: 5em;
     margin-top: 1em;
-    padding-top: 15px;
+    padding: 15px;
     padding-left: -2em;
     padding-right: -2em;
     position: relative;
@@ -72,6 +72,11 @@ h4{
     width: 20em;
 }
 
+.caja > button {
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
 h4{
     margin-left: 25px;
 }
@@ -82,72 +87,8 @@ li{
     font-size: 14px;
     height: 2em;
     justify-content: space-between;
-}
-
-.pasar{
-    border: 0;
-    background: none;
-    border: 2px solid #33ff00;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-    text-align: center;
-    transition: 0.25s;
-    outline: none;
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-  
-.pasar:hover{
-    background: #9eff85;
-    box-shadow: 0 0 10px #9eff85, 0 0 40px #9eff85, 0 0 80px #9eff85;
-    color: gray;
-    transition-delay: 0s;
-}
-
-.reintentar{
-    border: 0;
-    background: none;
-    border: 2px solid #00c3ff;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-    text-align: center;
-    transition: 0.25s;
-    outline: none;
-    padding-left: 15px;
-    padding-right: 15px;
-}
-  
-.reintentar:hover{
-    background: #73deff;
-    box-shadow: 0 0 10px #73deff, 0 0 40px #73deff, 0 0 80px #73deff;
-    color: white;
-    transition-delay: 0s;
-}
-
-.reiniciar{
-    border: 0;
-    background: none;
-    border: 2px solid #ff0000;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-    text-align: center;
-    transition: 0.25s;
-    outline: none;
-    padding-left: 15px;
-    padding-right: 15px;
-}
-  
-.reiniciar:hover{
-    background: #ff6060;
-    box-shadow: 0 0 10px #ff6060, 0 0 40px #ff6060, 0 0 80px #ff6060;
-    color: white;
-    transition-delay: 0s;
+    margin-bottom: 15px;
+    margin-top: 15px;
 }
 
 .modal{
@@ -171,14 +112,14 @@ li{
     border-radius: 2em;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
     transition: all 0.3s ease;
-  }
+}
 
-  .modal-button{
+.modal-button{
     border: 0;
     background: none;
     border: 2px solid #DDDDDD;
     border-radius: 5px;
-    color: white;
+    color: #FFFFFF;
     cursor: pointer;
     font-weight: bold;
     text-align: center;
@@ -186,9 +127,9 @@ li{
     outline: none;
     padding-left: 15px;
     padding-right: 15px;
-  }
+}
 
-  .modal-button:hover{
+.modal-button:hover{
     background-color: #FFFFFF;
     color: #444444;
     transition-delay: 0s;
@@ -200,4 +141,92 @@ li{
 
 .mensaje-error{
     color: #ff4444;
+}
+
+.boton-blanco{
+    border: 0;
+    background: none;
+    border: 2px solid #ffffff;
+    border-radius: 5px;
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+    transition: 0.25s;
+    outline: none;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+  
+.boton-blanco:hover{
+    background: #ffffff;
+    box-shadow: 0 0 10px #ffffff, 0 0 40px #ffffff, 0 0 80px #ffffff;
+    color: #444444;
+    transition-delay: 0s;
+}
+
+.boton-celeste{
+    border: 0;
+    background: none;
+    border: 2px solid #00c3ff;
+    border-radius: 5px;
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+    transition: 0.25s;
+    outline: none;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+  
+.boton-celeste:hover{
+    background: #73deff;
+    box-shadow: 0 0 10px #73deff, 0 0 40px #73deff, 0 0 80px #73deff;
+    color: #ffffff;
+    transition-delay: 0s;
+}
+
+.boton-rojo{
+    border: 0;
+    background: none;
+    border: 2px solid #ff0000;
+    border-radius: 5px;
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+    transition: 0.25s;
+    outline: none;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+  
+.boton-rojo:hover{
+    background: #ff6060;
+    box-shadow: 0 0 10px #ff6060, 0 0 40px #ff6060, 0 0 80px #ff6060;
+    color: #ffffff;
+    transition-delay: 0s;
+}
+
+.boton-verde{
+    border: 0;
+    background: none;
+    border: 2px solid #33ff00;
+    border-radius: 5px;
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+    transition: 0.25s;
+    outline: none;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+  
+.boton-verde:hover{
+    background: #9eff85;
+    box-shadow: 0 0 10px #9eff85, 0 0 40px #9eff85, 0 0 80px #9eff85;
+    color: #444444;
+    transition-delay: 0s;
 }

@@ -9,68 +9,87 @@
     <link rel="stylesheet" href="css/estilos.css">
     <title>ORDE-NAME</title>
 </head>
+
 <body>
   <header>
-        <h1 class="titulo">ORDE-NAME</h1>
+    <h1 class="titulo">ORDE-NAME</h1>
   </header>
 
     <div id="juego" class="neon">
 
-        <div v-if="mostrar_reglas" class="modal">
-          <div class="modal-container">
-            <h4>Bienvenido a ORDE-NAME</h4>
-            <hr>
-            <p> El objetivo del juego es crear un lista de nombres en orden alfabético.  </p>
-            <h5>Reglas de juego:</h5>
-            <ul>
-              <li>Se verificará el orden una vez se hayan pasado todos los nombres a la lista.</li><br>
-              <li>Se mostrarán mensajes correspondientes al orden en la sección "ESTADO".</li><br>
-              <li>Se guardará su récord una vez se haya terminado de ordenar, el mismo podrá superarse volviendo a jugando.</li><br>
-            </ul><br>
-            <button class="modal-button" v-on:click="mostrar_reglas = false"> Entendido </button>
-          </div>
+      <div v-if="mostrar_reglas" class="modal">
+        <div class="modal-container">
+          <h4>Bienvenido a ORDE-NAME</h4>
+          <hr>
+          <p> El objetivo del juego es crear un lista de nombres en orden alfabético.  </p>
+          <h5>Acerca del juego:</h5>
+          <ul>
+            <li>El juego termina una vez se hayan pasado todos los nombres a la lista nueva.</li>
+            <li>Se guardará su récord una vez se haya terminado de ordenar.</li>
+            <li>Podrá superar su récord rejugando.</li>
+            <li>Los datos de juego se perderán si recarga la página.</li>
+            <li>Música: Jeremy Blake - Powerup!</li>
+          </ul><br>
+          <button class="modal-button" v-on:click="mostrar_reglas = false"> Entendido </button>
         </div>
-
-        <div v-if="mostrar_exito" class="modal">
-          <div class="modal-container">
-            <h4>¡Felicidades!</h4>
-            <hr>
-            <p> Has ordenado la lista.  </p>
-            <p> Errores: {{ errores }} </p>
-            <button class="modal-button" v-on:click="mostrar_exito = false"> Continuar </button>
-          </div>
-        </div>
-        
-          <div class="caja">
-              <h4>NOMBRES</h4>
-              <hr>
-            <ul>
-                <li v-for="(persona, index) in personas">
-                  <p>{{ persona }}</p>  <button class="pasar" v-if="habilitado[index]" v-on:click="pasar(persona)"> → </button>
-                </li>
-            </ul>
-          </div>
-
-          <div class="caja">
-            <h4>TU ORDEN</h4>
-            <hr>
-            <ul>
-                <li v-for="result in resultado">
-                    {{ result }}
-                </li>
-            </ul>
-          </div>
-
-          <div class="caja">
-            <h4>ESTADO</h4>
-            <hr>
-              <p> {{ estado }} </p>
-              <p> {{ mensaje }} </p>
-              <p class="mensaje-error"> {{ mensaje_error }} </p>
-              <button class="reintentar" v-on:click="mostrarReglas">Reglas de Juego</button> <br><br>
-              <button class="reiniciar" v-on:click="rejugar" v-if="fin">Rejugar ⟳</button>
-          </div>
       </div>
+
+      <div v-if="mostrar_exito" class="modal">
+        <div class="modal-container">
+          <h4>¡Felicidades!</h4>
+          <hr>
+          <p> Has ordenado la lista.  </p>
+          <p> Errores: {{ errores }} </p>
+          <button class="modal-button" v-on:click="mostrar_exito = false"> Continuar </button>
+        </div>
+      </div>
+
+      <div v-if="mostrar_record" class="modal">
+        <div class="modal-container">
+          <h4>Mejor Puntaje</h4>
+          <hr>
+          <p> Mejor tiempo: {{ horas_record }}:{{ minutos_record }}:{{ segundos_record }}:{{ centesimas_record }} </p>
+          <p> Menor cantidad de errores: {{ errores_record }} </p>
+          <button class="modal-button" v-on:click="mostrar_record = false"> Continuar </button>
+        </div>
+      </div>
+
+      <div class="caja">
+          <h4>NOMBRES</h4>
+          <hr>
+        <ul v-if="(jugar) && (!pausa)">
+            <li v-for="(persona, index) in personas">
+              <p>{{ persona }}</p>  <button class="boton-verde" v-if="habilitado[index]" v-on:click="pasar(persona)"> -> </button>
+            </li>
+        </ul>
+      </div>
+
+      <div class="caja">
+        <h4>TU ORDEN</h4>
+        <hr>
+        <ul>
+            <li v-for="result in resultado">
+              {{ result }} 
+            </li>
+        </ul>
+      </div>
+
+      <div class="caja">
+        <h4>INFO</h4>
+        <hr>
+          <p> {{ mensaje }} </p>
+          <p> Tiempo: {{ horas }}:{{ minutos }}:{{ segundos }}:{{ centesimas }} </p>
+          <p class="mensaje-error"> {{ mensaje_error }} </p>
+          <button class="boton-celeste" v-on:click="mostrar_reglas = true" v-if="!jugar">Bienvenido 🛈</button>
+          <button class="boton-verde" v-on:click="despausar" v-if="!jugar">Jugar</button>
+          <button class="boton-celeste" v-on:click="pausar" v-if="(jugar) && (!pausa) && (!fin)">Pausa ⏸︎</button>
+          <button class="boton-celeste" v-on:click="despausar" v-if="(pausa) && (!fin)">Continuar ⏵︎</button>
+          <button class="boton-rojo" v-on:click="reiniciar" v-if="(fin) || (pausa)">Reiniciar ⟳</button>
+          <button class="boton-blanco" v-on:click="mostrar_record = true" v-if="record">Mejor Puntaje</button>
+              
+      </div>
+
+    </div>
 
     <script src="../vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

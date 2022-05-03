@@ -7,8 +7,9 @@
     <title>Componentes Globales y Locales</title>
 </head>
 <body>
+    <header><h4>Enlaces</h4></header>
     <div id="app">
-        
+        <boton v-for="boton in botones" :color="boton.color" :enlace="boton.enlace" :anchor-text="boton.anchorText" />
     </div>
     
     <script src="js/app.js"></script>

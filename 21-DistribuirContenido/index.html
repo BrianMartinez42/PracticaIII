@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../vue.js"></script>
+    <style>
+        body{
+            background-color: #222;
+            color: #fff;
+            font-family: sans-serif;
+        }
+
+        #app{
+            margin-left: 10em;
+            margin-right: 10em;
+            margin-top: 1em;
+            padding: 1em;
+        }
+
+        main{
+            background-color: #444;
+            border: 3px #ddd solid;
+            border-radius: 1em;
+            box-shadow: 5px 5px 5px #fff;
+        }
+
+        article, aside {
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+
+        header{
+            text-align: center;
+        }
+
+        footer{
+            text-align: center;
+        }
+
+    </style>
+    <title>Distribuir Contenido</title>
+</head>
+<body>
+    <div id="app">
+        <articulo-base v-bind:datos="datos">
+
+            <template #cabecera>
+                <h1> {{ datos.titulo }} </h1>
+            </template>
+
+            <template #contenido>
+                <h1>Esto es otro título</h1>
+                <p>Esto es otro contenido</p>
+            </template>
+
+        </articulo-base>
+        <!-- <main>
+            <header>
+                <h3>Bienvenido a mi Web</h3>
+                <h4>Pasa y disfruta</h4>
+            </header>
+            <article>
+                <h1>Título del artículo</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero suscipit, mollitia asperiores aperiam aliquid similique rem sit quis atque, debitis ipsam ab, nesciunt dolores. Amet vero deserunt quaerat possimus porro?</p>
+            </article>
+            <aside>
+                <nav>
+                    <ul>
+                        <li>Enlace</li>
+                        <li>Enlace</li>
+                        <li>Enlace</li>
+                    </ul>
+                </nav>
+            </aside>
+            <footer>
+                <small>Copyright Yo</small>
+            </footer>
+        </main> -->
+
+    </div>
+    
+    <script type="text/x-template" id="articulo-base-template">
+        <main>
+            <header>
+                <slot name="cabecera" v-bind:datos="datos">
+                    <h3>Bienvenidos a mi página Web</h3>
+                    <h5>Sentite como en casa</h5>
+                </slot>
+            </header>
+
+            <article>
+                <slot name="contenido">
+                    <h1>Título del artículo</h1>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum quas quod nam deserunt saepe quae doloribus fuga velit tempora numquam labore, aut voluptatum, amet et itaque debitis mollitia commodi ipsam?</p>
+                </slot>
+            </article>
+
+            <aside>
+                <slot name="lateral">
+                    <ul>
+                        <li>Enlace</li>
+                        <li>Enlace</li>
+                        <li>Enlace</li>
+                    </ul>
+                </slot>
+            </aside>
+
+            <footer>
+                <slot name="pie">
+                    <small>Copyright Yo</small>
+                </slot>
+            </footer>
+        </main>
+    </script>
+    
+    <script src="js/app.js"></script>
+</body>
+</html>

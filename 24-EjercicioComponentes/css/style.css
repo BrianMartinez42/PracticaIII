@@ -1,0 +1,17 @@
+body{
+    font-family: sans-serif;
+}
+.baraja{
+    display: flex;
+    align-items: center;
+    border: 1px solid #444;
+    height: 150px;
+    width: 150px;
+}
+.baraja > p{
+    font-weight: bold;
+    margin: auto;
+}
+.baraja:hover{
+    cursor: pointer;
+}

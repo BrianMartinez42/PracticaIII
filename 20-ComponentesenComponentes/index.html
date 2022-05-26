@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body{
+            background-color: #444;
+            color: #fff;
+            font-family: sans-serif;
+        }
+
+        .usuarios{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .usuario{            
+            border: 1.5px #fff solid;
+            border-radius: 1em;
+            height: 20em;
+            margin-bottom: 5px;
+            padding: 5px;
+            text-align: center;
+            width: 15em;
+            cursor: pointer;
+        }
+
+    </style>
+    <title>Componentes dentro de Componentes</title>
+</head>
+<body>
+    <div id="app">
+        <article class="usuarios">
+            <section class="disponibles">
+                <h1>Usuarios disponibles: {{ usuariosDisponibles.length }}</h1>
+                <usuarios v-bind:listado="usuariosDisponibles" destino="usuariosSeleccionados"></usuarios>
+            </section>
+
+            <section class="seleccionados">
+                <h1>Usuarios seleccionados: {{ usuariosSeleccionados.length }}</h1>
+                <usuarios v-bind:listado="usuariosSeleccionados" destino="usuariosDisponibles"></usuarios>
+            </section>
+        </article>
+
+    </div>
+
+    <script type="text/x-template" id="usuario-template">
+        <article class="usuario" v-on:click="modificarSeleccion">
+            <img v-bind:src="info.picture.large" v-bind:alt="info.nombre">
+            <h1 class="usuario__nombre"> {{ nombreCompleto }} </h1>
+            <a v-bind:href="info.mail"> {{ info.email }} </a>
+            <p> {{ info.username }} </p>
+        </article>
+    </script>
+
+    <script type="text/x-template" id="usuarios-template">
+        <div>
+            <usuario 
+                v-on:seleccion="alterarSeleccion"
+                v-for="usuario in listado" 
+                v-bind:info="usuario"
+                >
+            </usuario>
+        </div>
+    </script>
+
+    <script src="../vue.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

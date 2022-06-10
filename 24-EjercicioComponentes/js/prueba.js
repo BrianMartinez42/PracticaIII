@@ -3,21 +3,19 @@ const carta = {
     template: '#carta-template',
     methods: {
         seleccionarCarta(){
-            if (!this.seleccionada) {
-                this.$emit('mostrar', this.carta.id);    
-            }else{
-                this.$emit('ocultar')
-            }
+            console.log(this.carta.seleccionada);
+            this.$emit('mostrar', this.carta);
         }
     }
 }
 
 const juego = {
-    props: ['todas'],
+    props: ['baraja'],
     template: '#juego-template',
     methods: {
-        mostrarCarta(id){
-            alert(id);
+        mostrarCarta(carta){
+            carta.seleccionada = true;
+            console.log(carta);
         },
     },
     components: {
@@ -29,7 +27,6 @@ new Vue({
     el: "#app",
     data: {
         baraja: [],
-        // valores: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T' ],
         filas: 6,
         columnas: 6,
     },
@@ -55,7 +52,8 @@ new Vue({
                     seleccionada = false;                    
                 }
                 elem.id = (this.columnas*i)+j; 
-                elem.nombre = aux[0];                
+                elem.nombre = aux[0];
+                elem.seleccionada = false;
                 arr.push(elem);
                 aux.shift();
             }

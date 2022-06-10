@@ -16,7 +16,7 @@
     <div id="app">
         <article class="memorama">
 
-            <juego v-bind:todas="baraja"></juego>
+            <juego v-bind:baraja="baraja"></juego>
         </article>
 
     </div>    
@@ -24,20 +24,19 @@
     <script type="text/x-template" id="carta-template">
         <article class="carta" v-on:click="seleccionarCarta">            
             
-            <p v-if="carta.seleccionada"> ? </p>
-            <p v-else> {{ carta.nombre }}  </p>
+            <p v-if="carta.seleccionada"> {{ carta.nombre }} </p>
+            <p v-else> ? </p>
         </article>
     </script>
 
     <script type="text/x-template" id="juego-template">
         <article class="juego">
             <table>
-                <tr v-for="cartas in todas">
+                <tr v-for="cartas in baraja">
                     <td v-for="carta in cartas">
                         <carta                             
-                            v-bind:carta="carta"
-                            v-on:mostrar="mostrarCarta"
-                            v-on:ocultar="carta.seleccionada = false"
+                            v-bind:carta=carta
+                            v-on:mostrar=mostrarCarta
                         >
                         </carta>
                     </td>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="../vue.js"></script>
+    <title>prueba</title>
+</head>
+<body>
+    <header>
+        <h3>Memorama</h3>
+    </header>
+    <hr>    
+    <div id="app">
+        <article class="memorama">
+
+            <juego v-bind:todas="baraja"></juego>
+        </article>
+
+    </div>    
+
+    <script type="text/x-template" id="carta-template">
+        <article class="carta" v-on:click="seleccionarCarta">            
+            
+            <p v-if="carta.seleccionada"> ? </p>
+            <p v-else> {{ carta.nombre }}  </p>
+        </article>
+    </script>
+
+    <script type="text/x-template" id="juego-template">
+        <article class="juego">
+            <table>
+                <tr v-for="cartas in todas">
+                    <td v-for="carta in cartas">
+                        <carta                             
+                            v-bind:carta="carta"
+                            v-on:mostrar="mostrarCarta"
+                            v-on:ocultar="carta.seleccionada = false"
+                        >
+                        </carta>
+                    </td>
+                </tr>
+            </table>
+        </article>
+    </script>
+
+    <script src="js/prueba.js"></script>
+</body>
+</html>

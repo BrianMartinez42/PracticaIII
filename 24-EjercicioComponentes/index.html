@@ -12,25 +12,47 @@
     <header>
         <h3>Memorama</h3>
     </header>
-    
+    <hr>    
     <div id="app">
-        <carta 
-            v-for="carta in baraja"             
-            v-bind:nombre="carta.name"
-            v-bind:bool="carta.selected"
-            v-on:mostrar="carta.selected=true"
-            v-on:ocultar="carta.selected=false"
-            v-bind:info="carta"
-        >
-        </carta>
+        <article class="memorama">
+
+            <table>
+                <tr v-for="cartas in baraja">
+                    <td v-for="carta in cartas">
+                        <carta                             
+                            v-bind:nombre="carta.nombre"
+                            v-bind:seleccionada="carta.seleccionada"
+                            v-on:mostrar="carta.seleccionada = true"
+                            v-on:ocultar="carta.seleccionada = false"
+                        >
+                        </carta>
+                    </td>
+                </tr>
+            </table>
+
+        </article>
+
     </div>    
 
     <script type="text/x-template" id="carta-template">
-        <article class="baraja" v-on:click="seleccionarCarta">
-            <p v-if="!bool"> ? </p>
-            <p v-if="bool"> {{ nombre }} </p>
+        <article class="carta" v-on:click="seleccionarCarta">
+            <p v-if="seleccionada"> ? </p>
+            <p v-if="!seleccionada"> {{ nombre }} </p>
         </article>
     </script>
+
+    <!-- <script type="text/x-template" id="carta-template">
+
+        <table>
+            <tr v-for="arr in matriz">
+                <td v-for="elem in arr" v-on:click="seleccionarCarta">                    
+                    <p v-if="bool"> ? </p>
+                    <p v-if="!bool"> {{ elem.nombre }} </p>
+                </td>
+            </tr>
+        </table>
+        
+    </script> -->
 
     <script src="js/app.js"></script>
 </body>
